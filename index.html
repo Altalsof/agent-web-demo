@@ -9,31 +9,32 @@
   <h1>Hola Mundo 🌍</h1>
   <p>Esta es una página de prueba para embeber el agente de Salesforce.</p>
 
-  <!-- Aquí se cargará el widget de Salesforce -->
-  
-  <!-- ⬇⬇⬇ PEGA AQUÍ TU SNIPPET DE SALESFORCE ⬇⬇⬇ -->
- <script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+  <!-- Init del Embedded Messaging -->
+  <script>
+    function initEmbeddedMessaging() {
+      try {
+        embeddedservice_bootstrap.settings.language = 'es';
+        embeddedservice_bootstrap.init(
+          '00DNS00000GlaDJ', // orgId (tu valor)
+          'AgentforceService', // Deployment name (tu valor)
+          'https://orgfarm-ea2e5d2232-dev-ed.develop.my.site.com/ESWAgentforceService1743455567243', // tu deployment URL
+          { scrt2URL: 'https://orgfarm-ea2e5d2232-dev-ed.develop.my.salesforce-scrt.com' } // tu scrt2URL
+        );
+      } catch (err) {
+        console.error('Error loading Embedded Messaging:', err);
+      }
+    }
 
-			embeddedservice_bootstrap.init(
-				'00DNS00000GlaDJ',
-				'AgentforceService',
-				'https://orgfarm-ea2e5d2232-dev-ed.develop.my.site.com/ESWAgentforceService1743455567243',
-				{
-					scrt2URL: 'https://orgfarm-ea2e5d2232-dev-ed.develop.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
+    // (Opcional) abrir el chat automáticamente al estar listo
+    window.addEventListener('onEmbeddedMessagingReady', () => {
+      try { embeddedservice_bootstrap.utilAPI.launchChat(); } catch(e){}
+    });
+  </script>
 
-  <!-- ⬆⬆⬆ FIN DEL SNIPPET ⬆⬆⬆ -->
+  <!-- Carga de la librería del deployment (CLAVE) -->
+  <script
+    src="https://orgfarm-ea2e5d2232-dev-ed.develop.my.site.com/ESWAgentforceService1743455567243/assets/js/bootstrap.min.js"
+    onload="initEmbeddedMessaging()">
+  </script>
 </body>
 </html>
-
-
-
