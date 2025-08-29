@@ -45,8 +45,25 @@
   </footer>
 
   <!-- ⬇⬇⬇ PEGA AQUÍ TU SNIPPET DE SALESFORCE (Web Messaging / Agentforce) ⬇⬇⬇ -->
-  <!-- Ejemplo (NO real): <script src="https://yourdomain.my.site.com/messaging/init.js" data-deployment-id="..."></script> -->
-  <!-- PEGA_AQUÍ_TU_SNIPPET_DE_SALESFORCE -->
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DNS00000GlaDJ',
+				'AgentforceService',
+				'https://orgfarm-ea2e5d2232-dev-ed.develop.my.site.com/ESWAgentforceService1743455567243',
+				{
+					scrt2URL: 'https://orgfarm-ea2e5d2232-dev-ed.develop.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+
   <!-- ⬆⬆⬆ FIN DEL SNIPPET ⬆⬆⬆ -->
 </body>
 </html>
@@ -66,5 +83,6 @@ Which routes show a preference for app payments over cash?
 Does transit usage increase on holidays?
 
 What is the daily trend of transit usage throughout the month?
+
 
 Which routes are most used during extreme temperatures?
